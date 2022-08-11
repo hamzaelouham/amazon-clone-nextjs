@@ -1,10 +1,8 @@
+import Image from "next/image";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
-import image1 from "../images/1.jpg";
-import image2 from "../images/2.jpg";
-import image3 from "../images/3.jpg";
 
-function Banner() {
+export default function Banner() {
   return (
     <div className="relative">
       <div className="absolute w-full h-32 bg-gradient-to-t from-gray-100 to-transparent bottom-0 z-20" />
@@ -17,17 +15,15 @@ function Banner() {
         showThumbs={false}
       >
         <div>
-          <img src={image1} alt="1" />
+          <img src="/images/1.jpg" />
         </div>
         <div>
-          <img src={image2} alt="2" />
+          <img src="/images/2.jpg" />
         </div>
         <div>
-          <img src={image3} alt="3" />
+          <img src="/images/3.jpg" />
         </div>
       </Carousel>
     </div>
   );
 }
-
-export default Banner;

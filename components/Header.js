@@ -1,27 +1,20 @@
+import { useState } from "react";
+import Image from "next/image";
 import {
   SearchIcon,
   ShoppingCartIcon,
   MenuIcon,
 } from "@heroicons/react/outline";
 import { useRouter } from "next/router";
-import logo from "../images/logo192.png";
-//import { useSelector, useDispatch } from "react-redux";
-
-import { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 
 export default function Header() {
-  // const basket = useSelector((state) => state.cart.cartItems);
-  // const auth = useSelector((state) => state.auth);
+  const basket = []; //useSelector((state) => state.cart.cartItems);
+  const auth = { loggedIn: true, user: { name: "hamza" } }; //useSelector((state) => state.auth);
   const [searchvalue, setSearchvalue] = useState("");
-  const history = useRouter();
-  //const dispatch = useDispatch();
+  const router = useRouter();
+  // const dispatch = useDispatch();
 
-  const handleHomeRoute = () => {
-    history.push("/");
-  };
-  const handleCheckoutRoute = () => {
-    history.push("/checkout");
-  };
   // const logout = () => {
   //   dispatch({ type: "LOGOUT" });
   // };
@@ -35,15 +28,16 @@ export default function Header() {
       {/* top nav */}
       <div className="flex items-center bg-amazon_blue p-1 flex-grow py-2">
         <div
-          onClick={() => handleHomeRoute()}
+          onClick={() => router.push("/")}
           className="mt-2 cursor-pointer flex items-center flex-grow sm:flex-grow-0"
         >
           <img
-            src={logo}
-            className="object-fit-contain mr-4"
+            src="/images/logo192.png"
+            className="mr-4"
             height={250}
             width={80}
             alt="logo"
+            objectFit="contain"
           />
         </div>
         <div className="hidden sm:flex items-center rounded-md cursor-pointer flex-grow h-10 bg-yellow-400 hover:bg-yellow-500">
@@ -71,7 +65,7 @@ export default function Header() {
             <p className="font-extrabold md:text-sm"> & Orders</p>
           </div>
           <div
-            onClick={() => handleCheckoutRoute()}
+            onClick={() => router.push("/checkout")}
             className="relative link flex items-center"
           >
             <span className="absolute top-0 right-0 md:right-10 h-4 w-4 bg-yellow-400 text-black rounded-full text-center font-bold">
