@@ -2,7 +2,7 @@ import { useState } from "react";
 import { StarIcon } from "@heroicons/react/solid";
 import Currency from "react-currency-formatter";
 import { useDispatch } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { useRouter } from "next/router";
 
 function Product({ id, title, price, image, description, rating, category }) {
   const { rate } = rating === undefined ? { rate: 0 } : rating;
@@ -10,10 +10,8 @@ function Product({ id, title, price, image, description, rating, category }) {
   const [Qty] = useState(1);
 
   const [disable, setDisable] = useState(false);
-
+  const history = useRouter();
   const dispatch = useDispatch();
-
-  const history = useHistory();
 
   const handleRoute = () => {
     history.push(`/product/${id}`);

@@ -3,18 +3,18 @@ import {
   ShoppingCartIcon,
   MenuIcon,
 } from "@heroicons/react/outline";
-
+import { useRouter } from "next/router";
 import logo from "../images/logo192.png";
-import { useSelector, useDispatch } from "react-redux";
-import { useHistory } from "react-router";
+//import { useSelector, useDispatch } from "react-redux";
+
 import { useState } from "react";
 
-function Header() {
-  const basket = useSelector((state) => state.cart.cartItems);
-  const auth = useSelector((state) => state.auth);
+export default function Header() {
+  // const basket = useSelector((state) => state.cart.cartItems);
+  // const auth = useSelector((state) => state.auth);
   const [searchvalue, setSearchvalue] = useState("");
-  const history = useHistory();
-  const dispatch = useDispatch();
+  const history = useRouter();
+  //const dispatch = useDispatch();
 
   const handleHomeRoute = () => {
     history.push("/");
@@ -22,13 +22,13 @@ function Header() {
   const handleCheckoutRoute = () => {
     history.push("/checkout");
   };
-  const logout = () => {
-    dispatch({ type: "LOGOUT" });
-  };
+  // const logout = () => {
+  //   dispatch({ type: "LOGOUT" });
+  // };
 
-  const search = () => {
-    dispatch({ type: "SEARCH", payload: searchvalue });
-  };
+  // const search = () => {
+  //   dispatch({ type: "SEARCH", payload: searchvalue });
+  // };
 
   return (
     <header>
@@ -52,7 +52,7 @@ function Header() {
             type="text"
             onChange={(e) => setSearchvalue(e.target.value)}
           />
-          <SearchIcon className="h-12 p-4" onClick={search} />
+          <SearchIcon className="h-12 p-4" onClick={() => console.log("ser")} />
         </div>
         {/* right corner*/}
 
@@ -99,5 +99,3 @@ function Header() {
     </header>
   );
 }
-
-export default Header;

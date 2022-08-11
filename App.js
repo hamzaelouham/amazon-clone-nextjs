@@ -12,7 +12,6 @@ import Notfound from "./components/Notfound";
 import Payments from "./pages/Payments";
 import PlaceOrder from "./pages/PlaceOrder";
 
-
 export default function App() {
   return (
     <Router>
@@ -37,4 +36,3 @@ export default function App() {
     </Router>
   );
 }
-

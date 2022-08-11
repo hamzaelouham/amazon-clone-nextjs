@@ -1,9 +1,7 @@
 import jwt_decode from "jwt-decode";
 
-let user = localStorage.getItem("Auth")
-  ? jwt_decode(localStorage.getItem("Auth"))
-  : null;
-const id = localStorage.getItem("ID") ? localStorage.getItem("ID") : null;
+let user = null;
+const id = null;
 
 const initialState = { loggedIn: user === null ? false : true, user };
 
