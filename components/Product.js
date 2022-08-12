@@ -37,7 +37,7 @@ const Product = ({
           className="cursor-pointer"
         />
       </Link>
-      <Link href={`/product/${id}`}>
+      <Link href={`/product/${id}/${title}`}>
         <h4 className="my-3 link">{title}</h4>
       </Link>
       <div className="flex">

@@ -14,7 +14,7 @@ export default function Home() {
 }
 
 const getProducts = async () =>
-  await (await fetch("https://fakestoreapi.com/products")).json();
+  await (await fetch(`${process.env.NEXT_PUBLIC_API_URL}/products`)).json();
 
 export const getStaticProps = async () => {
   const queryClient = new QueryClient();
