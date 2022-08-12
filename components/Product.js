@@ -2,7 +2,7 @@ import { useState } from "react";
 import { StarIcon } from "@heroicons/react/solid";
 import Currency from "react-currency-formatter";
 //import { useDispatch } from "react-redux";
-import { useRouter } from "next/router";
+import Link from "next/link";
 
 export default function Product({
   id,
@@ -13,21 +13,14 @@ export default function Product({
   rating,
   category,
 }) {
-  const { rate } = rating === undefined ? { rate: 0 } : rating;
-  const [rates] = useState(parseInt(rate));
+  const rates = rating ? parseInt(rating.rate) : 2;
   const [Qty] = useState(1);
 
   const [disable, setDisable] = useState(false);
-  const router = useRouter();
+
   //const dispatch = useDispatch();
 
-  const handleRoute = () => {
-    router.push(`/product/${id}`);
-  };
-
   const adToCart = (product) => {
-    dispatch({ type: "ADD_TO_CART", payload: product });
-
     setDisable(true);
   };
 
@@ -37,12 +30,12 @@ export default function Product({
         {category}
       </p>
 
-      <img src={image} height={200} width={200} alt={title} />
-
-      <h4 onClick={() => handleRoute()} className="my-3 link">
-        {title}
-      </h4>
-
+      <Link href={`/product/${id}`}>
+        <img src={image} height={200} width={200} alt={title} />
+      </Link>
+      <Link href={`/product/${id}`}>
+        <h4 className="my-3 link">{title}</h4>
+      </Link>
       <div className="flex">
         {Array(rates)
           .fill()

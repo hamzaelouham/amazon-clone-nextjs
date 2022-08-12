@@ -14,7 +14,6 @@ function Products({ products }) {
             image={image}
             description={description}
             category={category}
-            rating={rating}
           />
         ))}
       <img
@@ -35,7 +34,6 @@ function Products({ products }) {
               image={image}
               description={description}
               category={category}
-              rating={rating}
             />
           ))}
       </div>
@@ -50,7 +48,6 @@ function Products({ products }) {
             image={image}
             description={description}
             category={category}
-            rating={rating}
           />
         ))}
     </div>

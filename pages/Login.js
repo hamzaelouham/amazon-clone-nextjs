@@ -1,30 +1,23 @@
+import { useRouter } from "next/router";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { useHistory } from "react-router";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Logo from "../components/Logo";
-import { login } from "../redux/actions/loginAction";
-import { Redirect } from "react-router-dom";
 
 export default function Login() {
+  const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
   const auth = useSelector((state) => state.auth.loggedIn);
-  const errors = useSelector((state) => state.auth.errors);
+  const errors = null; //useSelector((state) => state.auth.errors);
+
   const submitForm = (e) => {
     e.preventDefault();
-    dispatch(login({ email, password }));
   };
 
-  const history = useHistory();
   const handleRegister = () => {
-    history.push("/register");
+    router.push("/register");
   };
-
-  if (auth) {
-    return <Redirect to="/" />;
-  }
 
   return (
     <div className="py-3.5 px-5 bg-white">
