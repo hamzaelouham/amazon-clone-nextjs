@@ -8,9 +8,9 @@ function CartDetails(props) {
   const dispatch = useDispatch();
   const { id, title, price, description, image, rating, category } =
     props.product;
-  const country = props.country;
+  const country = "morocco"; //props.country;
   const adToCart = (product) => {
-    dispatch({ type: "ADD_TO_CART", payload: product });
+    //dispatch({ type: "ADD_TO_CART", payload: product });
     setDisable(true);
   };
 

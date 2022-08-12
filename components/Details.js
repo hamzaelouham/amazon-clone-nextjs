@@ -22,11 +22,11 @@ function Details({
         <div className="text-green-700">{category}</div>
         <div className="flex space-x-4">
           <span className="flex text-yellow-700">
-            {Array(rates)
+            {/* {Array(rates)
               .fill()
               .map((_, i) => (
                 <StarIcon key={i} className="h-5 text-yellow-500" />
-              ))}
+              ))} */}
           </span>
           <span className="text-green-700 blue-link">{count} ratings</span>
           <span> | </span>

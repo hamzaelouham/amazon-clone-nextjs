@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { StarIcon } from "@heroicons/react/solid";
 import Currency from "react-currency-formatter";
-//import { useDispatch } from "react-redux";
 import Link from "next/link";
+//import { useDispatch } from "react-redux";
 
-export default function Product({
+const Product = ({
   id,
   title,
   price,
@@ -12,14 +12,12 @@ export default function Product({
   description,
   rating,
   category,
-}) {
+}) => {
   const rates = rating ? parseInt(rating.rate) : 2;
   const [Qty] = useState(1);
 
   const [disable, setDisable] = useState(false);
-
   //const dispatch = useDispatch();
-
   const adToCart = (product) => {
     setDisable(true);
   };
@@ -31,7 +29,13 @@ export default function Product({
       </p>
 
       <Link href={`/product/${id}`}>
-        <img src={image} height={200} width={200} alt={title} />
+        <img
+          src={image}
+          height={200}
+          width={200}
+          alt={title}
+          className="cursor-pointer"
+        />
       </Link>
       <Link href={`/product/${id}`}>
         <h4 className="my-3 link">{title}</h4>
@@ -74,4 +78,6 @@ export default function Product({
       </button>
     </div>
   );
-}
+};
+
+export default Product;

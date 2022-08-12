@@ -27,11 +27,9 @@ export default function Header() {
     <header>
       {/* top nav */}
       <div className="flex items-center bg-amazon_blue p-1 flex-grow py-2">
-        <div
-          onClick={() => router.push("/")}
-          className="mt-2 cursor-pointer flex items-center flex-grow sm:flex-grow-0"
-        >
+        <div className="mt-2 cursor-pointer flex items-center flex-grow sm:flex-grow-0">
           <img
+            onClick={() => router.push("/")}
             src="/images/logo192.png"
             className="object-fit-contain mr-4"
             height={250}
