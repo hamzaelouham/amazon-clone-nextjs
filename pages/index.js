@@ -1,21 +1,14 @@
-import { useQuery, QueryClient, dehydrate } from "@tanstack/react-query";
-import Banner from "../components/Banner";
-import Products from "../components/Products";
+import { dehydrate, QueryClient, useQuery } from "@tanstack/react-query";
+
+import { Banner, Products } from "../components/";
 
 export default function Home() {
-  const {
-    data,
-    // isLoading,
-    // isFetching,
-  } = useQuery("products", getProducts);
+  const { data: products } = useQuery(["products"], getProducts);
 
-  console.log(data);
-
-  if (!data) return <h2>no data</h2>;
   return (
     <main className="max-w-screen-2xl mx-auto">
       <Banner />
-      <Products products={data} />
+      <Products products={products} />
     </main>
   );
 }
@@ -25,7 +18,7 @@ const getProducts = async () =>
 
 export const getStaticProps = async () => {
   const queryClient = new QueryClient();
-  await queryClient.prefetchQuery("products", getProducts);
+  await queryClient.prefetchQuery(["products"], getProducts);
 
   return {
     props: { dehydratedState: dehydrate(queryClient) },

@@ -33,11 +33,10 @@ export default function Header() {
         >
           <img
             src="/images/logo192.png"
-            className="mr-4"
+            className="object-fit-contain mr-4"
             height={250}
             width={80}
             alt="logo"
-            objectFit="contain"
           />
         </div>
         <div className="hidden sm:flex items-center rounded-md cursor-pointer flex-grow h-10 bg-yellow-400 hover:bg-yellow-500">

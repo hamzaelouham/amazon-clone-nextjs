@@ -1,19 +1,17 @@
-import React from "react";
+import { useRef } from "react";
 import {
   Hydrate,
   QueryClient,
   QueryClientProvider,
 } from "@tanstack/react-query";
-
 import Header from "../components/Header";
 import { Provider } from "react-redux";
 import store from "../redux/store";
-
 import "../styles/globles.css";
 import "../styles/style.css";
 
 export default function MyApp({ Component, pageProps }) {
-  const queryClient = React.useRef(new QueryClient());
+  const queryClient = useRef(new QueryClient());
 
   return (
     <Provider store={store}>
