@@ -1,5 +1,10 @@
 import React from "react";
-import { QueryClientProvider, QueryClient, Hydrate } from "react-query";
+import {
+  Hydrate,
+  QueryClient,
+  QueryClientProvider,
+} from "@tanstack/react-query";
+
 import Header from "../components/Header";
 import { Provider } from "react-redux";
 import store from "../redux/store";

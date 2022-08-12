@@ -1,18 +1,21 @@
-import { useQuery, QueryClient } from "react-query";
+import { useQuery, QueryClient, dehydrate } from "@tanstack/react-query";
 import Banner from "../components/Banner";
 import Products from "../components/Products";
 
 export default function Home() {
   const {
-    data: products,
+    data,
     // isLoading,
     // isFetching,
   } = useQuery("products", getProducts);
 
+  console.log(data);
+
+  if (!data) return <h2>no data</h2>;
   return (
     <main className="max-w-screen-2xl mx-auto">
       <Banner />
-      <Products products={products} />
+      <Products products={data} />
     </main>
   );
 }
