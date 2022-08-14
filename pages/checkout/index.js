@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import Currency from "react-currency-formatter";
-import CheckoutProuducts from "../components/CheckoutProducts";
+import CheckoutProuducts from "../../components/CheckoutProducts";
 
 function Checkout(props) {
   const cartItems = useSelector((state) => state.cart.cartItems);

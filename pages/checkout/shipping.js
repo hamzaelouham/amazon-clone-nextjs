@@ -1,19 +1,19 @@
 import React from "react";
 import { Step, StepLabel, Stepper } from "@material-ui/core";
-import { useHistory } from "react-router";
-import { saveAddress } from "../redux/actions/checkoutActions";
+import { useRouter } from "next/router";
+import { saveAddress } from "../../redux/actions/checkoutActions";
 import { useDispatch } from "react-redux";
 
 const stepsDetails = ["Shipping Address", "Payment Method", "Place Order"];
 
 function Shipping({ activeStep = 0 }) {
-  const history = useHistory();
+  const router = useRouter();
   const dispatch = useDispatch();
   const onSubmit = (e) => {
     e.preventDefault();
     const shippingInfo = {};
-    dispatch(saveAddress(shippingInfo));
-    history.push("/checkout/payments");
+    //dispatch(saveAddress(shippingInfo));
+    router.push("/checkout/payments");
   };
 
   return (

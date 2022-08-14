@@ -7,18 +7,19 @@ import {
   Radio,
   RadioGroup,
 } from "@material-ui/core";
-import { useHistory } from "react-router";
-import { useDispatch } from "react-redux";
-import { paymentMethod } from "../redux/actions/checkoutActions";
-import { useSelector } from "react-redux";
 
+import { useDispatch } from "react-redux";
+import { paymentMethod } from "../../redux/actions/checkoutActions";
+import { useSelector } from "react-redux";
+import { useRouter } from "next/router";
 const stepsDetails = ["Shipping Address", "Payment Method", "Place Order"];
 
 export default function Payments({ activeStep = 1 }) {
-  const history = useHistory();
   const [radio, setRadio] = useState("paypal");
   const shipping = useSelector((state) => state.cart.shippingAdress);
   const dispatch = useDispatch();
+  const router = useRouter();
+
   const RadioChange = (e) => {
     setRadio(e.target.value);
   };
@@ -26,19 +27,13 @@ export default function Payments({ activeStep = 1 }) {
   const onSubmit = (e) => {
     e.preventDefault();
     dispatch(paymentMethod(radio));
-    history.push("/checkout/place-order");
+    router.push("/checkout/place-order");
   };
 
   const goBack = (e) => {
     e.preventDefault();
     history.goBack();
   };
-
-  useEffect(() => {
-    if (!shipping) {
-      history.push("/checkout/shipping");
-    }
-  }, [history, shipping]);
 
   return (
     <div className="mt-3">
