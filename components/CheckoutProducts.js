@@ -2,6 +2,7 @@ import { useState } from "react";
 import { StarIcon } from "@heroicons/react/solid";
 import Currency from "react-currency-formatter";
 import { useDispatch } from "react-redux";
+import { RemoveFromCart } from "../redux/slices/cartSlice";
 
 function CheckoutProducts({
   id,
@@ -16,12 +17,7 @@ function CheckoutProducts({
   const dispatch = useDispatch();
   const [rates] = useState(parseInt(rate));
 
-  const removeFromCart = (item) => {
-    dispatch({
-      type: "REMOVE_FROM_CART",
-      payload: item,
-    });
-  };
+  const removeFromCart = (productId) => dispatch(RemoveFromCart(productId));
 
   return (
     <div className="grid grid-cols-5">
@@ -46,20 +42,7 @@ function CheckoutProducts({
         <Currency quantity={price} />
       </div>
       <div className="flex flex-col space-y-2 my-auto justify-self-end">
-        <button
-          onClick={() =>
-            removeFromCart({
-              id,
-              title,
-              price,
-              image,
-              description,
-              category,
-              rating,
-            })
-          }
-          className="button mt-auto"
-        >
+        <button onClick={() => removeFromCart(id)} className="button mt-auto">
           remove from cart
         </button>
       </div>

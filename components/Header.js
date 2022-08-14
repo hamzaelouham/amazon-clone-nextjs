@@ -9,7 +9,7 @@ import { useRouter } from "next/router";
 import { useSelector, useDispatch } from "react-redux";
 
 export default function Header() {
-  const basket = []; //useSelector((state) => state.cart.cartItems);
+  const basket = useSelector((state) => state.cart.cartItems);
   const auth = { loggedIn: true, user: { name: "hamza" } }; //useSelector((state) => state.auth);
   const [searchvalue, setSearchvalue] = useState("");
   const router = useRouter();

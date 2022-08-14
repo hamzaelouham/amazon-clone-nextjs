@@ -7,13 +7,9 @@ function Checkout(props) {
   const cartItems = useSelector((state) => state.cart.cartItems);
   const isAuth = useSelector((state) => state.auth.loggedIn);
   const total = cartItems.reduce(
-    (total, item) => total + item.price * parseInt(item.Qty),
+    (total, item) => total + item.price * parseInt(item.quantity),
     0
   );
-
-  const handleRedirect = () => {
-    if (isAuth) props.history.push("/checkout/shipping");
-  };
 
   return (
     <main className="lg:flex max-w-screen-2xl mx-auto">
@@ -62,7 +58,6 @@ function Checkout(props) {
                   ? "button mx-3 mt-2"
                   : "button mx-3 mt-2 cursor-not-allowed"
               }
-              onClick={() => handleRedirect()}
             >
               Checkout
             </button>

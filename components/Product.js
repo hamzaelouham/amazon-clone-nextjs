@@ -1,8 +1,9 @@
 import { useState } from "react";
-import { StarIcon } from "@heroicons/react/solid";
-import Currency from "react-currency-formatter";
 import Link from "next/link";
-//import { useDispatch } from "react-redux";
+import Currency from "react-currency-formatter";
+import { useDispatch } from "react-redux";
+import { StarIcon } from "@heroicons/react/solid";
+import { addToCart } from "../redux/slices/cartSlice";
 
 const Product = ({
   id,
@@ -14,12 +15,21 @@ const Product = ({
   category,
 }) => {
   const rates = rating ? parseInt(rating.rate) : 2;
-  const [Qty] = useState(1);
+  const [quantity] = useState(1);
+  const dispatch = useDispatch();
 
   const [disable, setDisable] = useState(false);
-  //const dispatch = useDispatch();
   const adToCart = (product) => {
+    dispatch(addToCart(product));
     setDisable(true);
+  };
+
+  const makeSlug = (str) => {
+    var slug = str.replace(" ", "-");
+    if (!slug.includes(" ")) {
+      return slug;
+    }
+    return makeSlug(slug);
   };
 
   return (
@@ -28,7 +38,7 @@ const Product = ({
         {category}
       </p>
 
-      <Link href={`/product/${id}`}>
+      <Link href={`/product/${id}/${makeSlug(title)}`}>
         <img
           src={image}
           height={200}
@@ -37,7 +47,7 @@ const Product = ({
           className="cursor-pointer"
         />
       </Link>
-      <Link href={`/product/${id}/${title}`}>
+      <Link href={`/product/${id}/${makeSlug(title)}`}>
         <h4 className="my-3 link">{title}</h4>
       </Link>
       <div className="flex">
@@ -65,7 +75,7 @@ const Product = ({
             description,
             rating,
             category,
-            Qty,
+            quantity,
           })
         }
         className={

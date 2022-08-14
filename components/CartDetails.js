@@ -2,24 +2,22 @@ import React, { useState } from "react";
 import Currency from "react-currency-formatter";
 import { LocationMarkerIcon } from "@heroicons/react/outline";
 import { useDispatch } from "react-redux";
+import { addToCart } from "../redux/slices/cartSlice";
 
 function CartDetails(props) {
-  const [disable, setDisable] = useState(false);
+  const [quantity, setQty] = useState(1);
   const dispatch = useDispatch();
   const { id, title, price, description, image, rating, category } =
     props.product;
-  const country = "morocco"; //props.country;
+  const country = "morocco";
   const adToCart = (product) => {
-    //dispatch({ type: "ADD_TO_CART", payload: product });
-    setDisable(true);
+    dispatch(addToCart(product));
   };
 
-  const [Qty, setQty] = useState(1);
-
   const handleQty = (e) => {
-    if (parseInt(e.target.value) < 0) {
+    if (parseInt(e.target.value) <= 0) {
       setQty(1);
-    } else setQty(e.target.value);
+    } else setQty(parseInt(e.target.value));
   };
 
   return (
@@ -60,7 +58,7 @@ function CartDetails(props) {
                 type="number"
                 className="outline-none focus:outline-none text-center w-full bg-gray-300 font-semibold text-md hover:text-black focus:text-black  md:text-basecursor-default flex items-center text-gray-700  outline-none"
                 name="custom-input-number"
-                value={Qty}
+                value={quantity}
               ></input>
             </div>
           </div>
@@ -77,15 +75,11 @@ function CartDetails(props) {
                 image,
                 rating,
                 category,
-                Qty,
+                quantity,
               })
             }
-            className={
-              disable
-                ? "secondary-button cursor-not-allowed"
-                : "secondary-button"
-            }
-            disabled={disable}
+            className={"secondary-button"}
+            // disabled={disable}
           >
             Add to cart
           </button>

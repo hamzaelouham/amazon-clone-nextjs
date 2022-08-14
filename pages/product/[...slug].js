@@ -37,7 +37,8 @@ const getProductById = async (id) =>
   ).json();
 
 export const getServerSideProps = async ({ query }) => {
-  const { id } = query;
+  const { slug } = query;
+  const id = slug[0];
   const _data = await getProductById(id);
 
   return {
