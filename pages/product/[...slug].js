@@ -1,16 +1,13 @@
 import React from "react";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, QueryClient } from "@tanstack/react-query";
+import { getProductById } from "../../src/queries/";
 import Preview from "../../components/Preview";
 import Details from "../../components/Details";
 import CartDetails from "../../components/CartDetails";
 
-export default function ProductDetails({ _data, id }) {
-  const { data: product } = useQuery(
-    ["getProductById"],
-    () => getPageById(id),
-    {
-      initialData: _data,
-    }
+export default function ProductDetails({ id }) {
+  const { data: product } = useQuery(["getProductById"], () =>
+    getProductById(id)
   );
 
   return (
@@ -31,20 +28,13 @@ export default function ProductDetails({ _data, id }) {
   );
 }
 
-const getProductById = async (id) =>
-  await (
-    await fetch(`${process.env.NEXT_PUBLIC_API_URL}/products/${id}`)
-  ).json();
-
 export const getServerSideProps = async ({ query }) => {
+  const queryClient = new QueryClient();
   const { slug } = query;
   const id = slug[0];
-  const _data = await getProductById(id);
+  await queryClient.prefetchQuery(["getProductById"], () => getProductById(id));
 
   return {
-    props: {
-      _data,
-      id,
-    },
+    props: { dehydratedState: dehydrate(queryClient), id },
   };
 };

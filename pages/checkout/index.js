@@ -1,15 +1,19 @@
 import React from "react";
+import { useRouter } from "next/router";
+
 import { useSelector } from "react-redux";
 import Currency from "react-currency-formatter";
 import CheckoutProuducts from "../../components/CheckoutProducts";
 
-function Checkout(props) {
+function Checkout() {
   const cartItems = useSelector((state) => state.cart.cartItems);
-  const isAuth = useSelector((state) => state.auth.loggedIn);
+  const isAuth = true; //useSelector((state) => state.auth.loggedIn);
   const total = cartItems.reduce(
     (total, item) => total + item.price * parseInt(item.quantity),
     0
   );
+
+  const router = useRouter();
 
   return (
     <main className="lg:flex max-w-screen-2xl mx-auto">
@@ -52,6 +56,7 @@ function Checkout(props) {
               <Currency quantity={total} />
             </span>
             <button
+              onClick={() => router.push("checkout/shipping")}
               disabled={!isAuth}
               className={
                 isAuth

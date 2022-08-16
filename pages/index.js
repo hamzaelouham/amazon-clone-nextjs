@@ -1,9 +1,9 @@
 import { dehydrate, QueryClient, useQuery } from "@tanstack/react-query";
-
+import { getProducts } from "../src/queries/";
 import { Banner, Products } from "../components/";
 
 export default function Home() {
-  const { data } = useQuery(["products"], getProducts);
+  const { data } = useQuery(["products"], () => etProducts());
 
   return (
     <main className="max-w-screen-2xl mx-auto">
@@ -13,12 +13,9 @@ export default function Home() {
   );
 }
 
-const getProducts = async () =>
-  await (await fetch(`${process.env.NEXT_PUBLIC_API_URL}/products`)).json();
-
 export const getStaticProps = async () => {
   const queryClient = new QueryClient();
-  await queryClient.prefetchQuery(["products"], getProducts);
+  await queryClient.prefetchQuery(["products"], () => getProducts());
 
   return {
     props: { dehydratedState: dehydrate(queryClient) },
