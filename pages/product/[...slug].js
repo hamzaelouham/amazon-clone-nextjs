@@ -1,5 +1,5 @@
 import React from "react";
-import { useQuery, QueryClient } from "@tanstack/react-query";
+import { useQuery, QueryClient, dehydrate } from "@tanstack/react-query";
 import { getProductById } from "../../src/queries/";
 import Preview from "../../components/Preview";
 import Details from "../../components/Details";

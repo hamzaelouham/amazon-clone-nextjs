@@ -1,6 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
-// import Cookies from "js-cookie";
+//import Cookies from "js-cookie";
 
+//const cartPriset = Cookies.get("cart") ? JSON.parse(Cookies.get("cart")) : [];
+//console.log(cartPriset);
 const initialState = {
   cartItems: [],
 };
@@ -48,6 +50,6 @@ export const cartSlice = createSlice({
 
 // export const CheckoutProduct = (state) => state.Cart.cartItems;
 
-export const { addToCart, RemoveFromCart } = cartSlice.actions;
+export const { addToCart, RemoveFromCart, getIntialCart } = cartSlice.actions;
 
 export default cartSlice.reducer;
