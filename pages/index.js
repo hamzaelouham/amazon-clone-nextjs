@@ -3,7 +3,7 @@ import { getProducts } from "../src/queries/";
 import { Banner, Products } from "../components/";
 
 export default function Home() {
-  const { data } = useQuery(["products"], () => etProducts());
+  const { data } = useQuery(["products"], () => getProducts());
 
   return (
     <main className="max-w-screen-2xl mx-auto">
@@ -13,7 +13,7 @@ export default function Home() {
   );
 }
 
-export const getStaticProps = async () => {
+export const getServerSideProps = async () => {
   const queryClient = new QueryClient();
   await queryClient.prefetchQuery(["products"], () => getProducts());
 

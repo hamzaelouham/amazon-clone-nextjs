@@ -18,7 +18,7 @@ export default function ProductDetails({ id }) {
           title={product.title}
           price={product.price}
           description={product.description}
-          rating={product.rating === undefined ? null : 2}
+          rating={product.rating === undefined ? 2 : 2}
           category={product.category}
           country={product.country}
         />
